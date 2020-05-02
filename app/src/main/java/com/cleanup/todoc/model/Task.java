@@ -16,7 +16,7 @@ import java.util.Comparator;
  */
 @Entity(foreignKeys = @ForeignKey(entity = Project.class,
         parentColumns = "id",
-        childColumns = "projectId"), indices = {@Index(value = {"projectId"}, unique = true)})
+        childColumns = "projectId"))
 
 public class Task {
     /**
