@@ -104,27 +104,16 @@ public class MainActivity extends AppCompatActivity implements TasksAdapter.Dele
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
         configureViewModel();
         taskViewModel.getAllTasks().observe(this, this::updateTasks);
       
         listTasks = findViewById(R.id.list_tasks);
         lblNoTasks = findViewById(R.id.lbl_no_task);
 
-        initDatabase();
-
         listTasks.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         listTasks.setAdapter(adapter);
 
         findViewById(R.id.fab_add_task).setOnClickListener(view -> showAddTaskDialog());
-    }
-
-    private void initDatabase() {
-        for(Project project : Project.getAllProjects()){
-            database.projectDao().createProject(project);
-        }
-        tasks = database.taskDao().getAllTasks();
-        updateTasks();
     }
 
     @Override
@@ -245,16 +234,16 @@ public class MainActivity extends AppCompatActivity implements TasksAdapter.Dele
             listTasks.setVisibility(View.VISIBLE);
             switch (sortMethod) {
                 case ALPHABETICAL:
-                    Collections.sort(database.taskDao().getAllTasks(), new Task.TaskAZComparator());
+                    Collections.sort(tasks, new Task.TaskAZComparator());
                     break;
                 case ALPHABETICAL_INVERTED:
-                    Collections.sort(database.taskDao().getAllTasks(), new Task.TaskZAComparator());
+                    Collections.sort(tasks, new Task.TaskZAComparator());
                     break;
                 case RECENT_FIRST:
-                    Collections.sort(database.taskDao().getAllTasks(), new Task.TaskRecentComparator());
+                    Collections.sort(tasks, new Task.TaskRecentComparator());
                     break;
                 case OLD_FIRST:
-                    Collections.sort(database.taskDao().getAllTasks(), new Task.TaskOldComparator());
+                    Collections.sort(tasks, new Task.TaskOldComparator());
                     break;
 
             }
@@ -327,10 +316,5 @@ public class MainActivity extends AppCompatActivity implements TasksAdapter.Dele
          * No sort
          */
         NONE
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
     }
 }
