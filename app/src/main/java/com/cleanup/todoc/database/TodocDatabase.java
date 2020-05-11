@@ -14,6 +14,7 @@ import com.cleanup.todoc.database.dao.TaskDao;
 import com.cleanup.todoc.model.Project;
 import com.cleanup.todoc.model.Task;
 
+
 import static com.cleanup.todoc.model.Project.getAllProjects;
 
 @Database(entities = {Project.class, Task.class}, version = 1, exportSchema = false)
@@ -28,7 +29,9 @@ public abstract class TodocDatabase extends RoomDatabase {
             synchronized (TodocDatabase.class) {
                 if ( INSTANCE == null ) {
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
+                                                    
                             TodocDatabase.class, "MyDatabase.db").addCallback(prepopulateDatabase()).allowMainThreadQueries().build();
+
                 }
             }
         }
