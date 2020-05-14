@@ -1,13 +1,13 @@
 package com.cleanup.todoc.database;
 
-import android.arch.persistence.db.SupportSQLiteDatabase;
-import android.arch.persistence.room.Database;
-import android.arch.persistence.room.OnConflictStrategy;
-import android.arch.persistence.room.Room;
-import android.arch.persistence.room.RoomDatabase;
+import androidx.sqlite.db.SupportSQLiteDatabase;
+import androidx.room.Database;
+import androidx.room.OnConflictStrategy;
+import androidx.room.Room;
+import androidx.room.RoomDatabase;
 import android.content.ContentValues;
 import android.content.Context;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import com.cleanup.todoc.database.dao.ProjectDao;
 import com.cleanup.todoc.database.dao.TaskDao;
@@ -60,7 +60,6 @@ public abstract class TodocDatabase extends RoomDatabase {
                 contentValues.put("id", projects[2].getId());
                 contentValues.put("name", projects[2].getName());
                 contentValues.put("color", projects[2].getColor());
-
                 db.insert("Project", OnConflictStrategy.IGNORE, contentValues);
             }
         };

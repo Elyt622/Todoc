@@ -1,8 +1,7 @@
 package com.cleanup.todoc.ui;
 
-import android.arch.lifecycle.LiveData;
-import android.arch.lifecycle.ViewModel;
-import android.support.annotation.Nullable;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.ViewModel;
 
 import com.cleanup.todoc.model.Project;
 import com.cleanup.todoc.model.Task;
@@ -23,6 +22,14 @@ public class TaskViewModel extends ViewModel {
         this.projectDataSource = projectDataSource;
         this.taskDataSource = taskDataSource;
         this.executor = executor;
+    }
+
+    // -------------
+    // FOR PROJECT
+    // -------------
+
+    public LiveData<List<Project>> getAllProjects() {
+        return projectDataSource.getAllProject();
     }
 
     // -------------
