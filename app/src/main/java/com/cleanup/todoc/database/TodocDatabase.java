@@ -29,7 +29,6 @@ public abstract class TodocDatabase extends RoomDatabase {
             synchronized (TodocDatabase.class) {
                 if ( INSTANCE == null ) {
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
-                                                    
                             TodocDatabase.class, "MyDatabase.db").addCallback(prepopulateDatabase()).allowMainThreadQueries().build();
 
                 }
@@ -44,7 +43,6 @@ public abstract class TodocDatabase extends RoomDatabase {
             @Override
             public void onCreate(@NonNull SupportSQLiteDatabase db) {
                 super.onCreate(db);
-
                 Project[] projects = getAllProjects();
                 ContentValues contentValues = new ContentValues();
                 contentValues.put("id", projects[0].getId());

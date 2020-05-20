@@ -91,7 +91,7 @@ public class MainActivity extends AppCompatActivity implements TasksAdapter.Dele
     private TextView lblNoTasks;
 
 
-    private TaskViewModel taskViewModel;
+    private MainViewModel taskViewModel;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -188,7 +188,7 @@ public class MainActivity extends AppCompatActivity implements TasksAdapter.Dele
     // 2 - Configuring ViewModel
     private void configureViewModel(){
         ViewModelFactory mViewModelFactory = Injection.provideViewModelFactory(this);
-        this.taskViewModel = ViewModelProviders.of(this, mViewModelFactory).get(TaskViewModel.class);
+       this.taskViewModel = ViewModelProviders.of(this, mViewModelFactory).get(MainViewModel.class);
     }
 
     /**

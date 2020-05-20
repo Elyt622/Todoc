@@ -50,7 +50,7 @@ public class TaskDaoTest {
     }
 
     @Test
-    public void insertAndGetUser() throws InterruptedException {
+    public void insertAndGetProject() throws InterruptedException {
         // BEFORE : Adding a new project
         this.database.projectDao().createProject(PROJECT_DEMO);
         // TEST
@@ -59,14 +59,14 @@ public class TaskDaoTest {
     }
 
     @Test
-    public void getItemsWhenNoItemInserted() throws InterruptedException {
+    public void getTasksWhenNoTaskInserted() throws InterruptedException {
         // TEST
         List<Task> items = LiveDataTestUtil.getValue(this.database.taskDao().getTasks(PROJECT_ID));
         assertTrue(items.isEmpty());
     }
 
     @Test
-    public void insertAndGetItems() throws InterruptedException {
+    public void insertAndGetTasks() throws InterruptedException {
         // BEFORE : Adding demo project & demo tasks
 
         this.database.projectDao().createProject(PROJECT_DEMO);
@@ -80,7 +80,7 @@ public class TaskDaoTest {
     }
 
     @Test
-    public void insertAndUpdateItem() throws InterruptedException {
+    public void insertAndUpdateTask() throws InterruptedException {
         // BEFORE : Adding demo project & demo tasks. Next, update task added & re-save it
         this.database.projectDao().createProject(PROJECT_DEMO);
         this.database.taskDao().insertTask(TASK1);
@@ -100,7 +100,7 @@ public class TaskDaoTest {
     }
 
     @Test
-    public void insertAndDeleteItem() throws InterruptedException {
+    public void insertAndDeleteTask() throws InterruptedException {
         // BEFORE : Adding demo project & demo task. Next, get the task added & delete it.
         this.database.projectDao().createProject(PROJECT_DEMO);
         this.database.taskDao().insertTask(TASK1);
