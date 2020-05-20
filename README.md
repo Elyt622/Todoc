@@ -1,4 +1,4 @@
-[![Icon App](/images/ic_launcher.png)]
+<img src="images/ic_launcher.png" width="100">
 
 # OpenClassrooms - Todoc
 
@@ -25,7 +25,7 @@ Gérer la persistance des données.
 
 - [Objectifs](#objectifs)
 - [Installation](#installation)
-- [Fonctionnalités](#features)
+- [Fonctionnalités](#fonctionnalités)
 
 ---
 
@@ -53,4 +53,6 @@ Gérer la persistance des données.
 
 ## Images de l'application
 
-![App](images/1.jpg =269x562) ![App](images/2.jpg =269x562) ![App](images/3.jpg =269x562) ![App](images/4.jpg =269x562)
+<img src="images/4.jpg" width="250"> <img src="images/1.jpg" width="250"> 
+
+<img src="images/3.jpg" width="250"> <img src="images/2.jpg" width="250"> 
