@@ -28,6 +28,9 @@ public class TasksAdapter extends RecyclerView.Adapter<TasksAdapter.TaskViewHold
     @NonNull
     private List<Task> tasks;
 
+    @NonNull
+    private List<Project> projects;
+
     /**
      * The listener for when a task needs to be deleted
      */
@@ -54,6 +57,11 @@ public class TasksAdapter extends RecyclerView.Adapter<TasksAdapter.TaskViewHold
         notifyDataSetChanged();
     }
 
+    void updateProjects(@NonNull final List<Project> projects) {
+        this.projects = projects;
+        notifyDataSetChanged();
+    }
+
     @NonNull
     @Override
     public TaskViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
@@ -63,7 +71,7 @@ public class TasksAdapter extends RecyclerView.Adapter<TasksAdapter.TaskViewHold
 
     @Override
     public void onBindViewHolder(@NonNull TaskViewHolder taskViewHolder, int position) {
-        taskViewHolder.bind(tasks.get(position));
+        taskViewHolder.bind(tasks.get(position), projects);
     }
 
     @Override
@@ -138,15 +146,24 @@ public class TasksAdapter extends RecyclerView.Adapter<TasksAdapter.TaskViewHold
             });
         }
 
+        Project getCurrentProject (Task task, List<Project> projects){
+            for(Project project : projects){
+                if(project.getId() == task.getProjectId())
+                    return project;
+            }
+            return null;
+        }
+
         /**
          * Binds a task to the item view.
          *
          * @param task the task to bind in the item view
          */
-        void bind(Task task) {
+        void bind(Task task, List<Project> projects) {
             lblTaskName.setText(task.getName());
             imgDelete.setTag(task);
-            final Project taskProject = task.getProject();
+            Project taskProject = getCurrentProject(task, projects);
+
             if (taskProject != null) {
                 imgProject.setSupportImageTintList(ColorStateList.valueOf(taskProject.getColor()));
                 lblProjectName.setText(taskProject.getName());

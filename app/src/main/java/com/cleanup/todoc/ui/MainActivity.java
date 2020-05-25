@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -100,8 +101,9 @@ public class MainActivity extends AppCompatActivity implements TasksAdapter.Dele
         setContentView(R.layout.activity_main);
 
         configureViewModel();
+        taskViewModel.getAllProjects().observe(this, this::updateProjects);
         taskViewModel.getAllTasks().observe(this, this::updateTasks);
-      
+
         listTasks = findViewById(R.id.list_tasks);
         lblNoTasks = findViewById(R.id.lbl_no_task);
 
@@ -243,6 +245,10 @@ public class MainActivity extends AppCompatActivity implements TasksAdapter.Dele
             }
             adapter.updateTasks(tasks);
         }
+    }
+
+    private void updateProjects(List<Project> projects){
+        adapter.updateProjects(projects);
     }
 
     /**
