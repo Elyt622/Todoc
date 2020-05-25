@@ -16,7 +16,7 @@ Gérer la persistance des données.
 - Réalisation du Modèle Physique des Données.
 - Réalisation du diagramme de classes.
 - Réalisation du diagramme d'utilisation.
-- Déploiements de l'app sur le Play Store en mode Bêta.
+- Déploiement de l'app sur le Play Store en mode Bêta.
 - Mises à jour des tests afin d'intégrer SQLite à l'application.
 
 ---
