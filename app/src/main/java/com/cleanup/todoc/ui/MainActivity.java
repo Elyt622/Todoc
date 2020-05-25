@@ -1,5 +1,6 @@
 package com.cleanup.todoc.ui;
 
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import android.content.DialogInterface;
@@ -276,13 +277,20 @@ public class MainActivity extends AppCompatActivity implements TasksAdapter.Dele
      * Sets the data of the Spinner with projects to associate to a new task
      */
     private void populateDialogSpinner() {
-        taskViewModel.getAllProjects().observe(this, projects -> {
-            final ArrayAdapter<Project> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, projects);
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-            if (dialogSpinner != null) {
-                dialogSpinner.setAdapter(adapter);
+        final Observer<List<Project>> projectObserver = new Observer<List<Project>>() {
+            @Override
+            public void onChanged(@Nullable final List<Project> projects) {
+                if (projects != null) {
+                    final ArrayAdapter<Project> adapter = new ArrayAdapter<>(MainActivity.this, android.R.layout.simple_spinner_item, projects);
+                    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    if (dialogSpinner != null) {
+                        dialogSpinner.setAdapter(adapter);
+                    }
+                }
+                taskViewModel.getAllProjects().removeObserver(this);
             }
-        });
+        };
+        taskViewModel.getAllProjects().observe(this, projectObserver);
     }
 
     /**
