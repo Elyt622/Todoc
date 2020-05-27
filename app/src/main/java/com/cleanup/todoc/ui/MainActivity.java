@@ -104,6 +104,15 @@ public class MainActivity extends AppCompatActivity implements TasksAdapter.Dele
         taskViewModel.getAllProjects().observe(this, this::updateProjects);
         taskViewModel.getAllTasks().observe(this, this::updateTasks);
 
+        /**
+        taskViewModel.getAllTasks().observe(this, new Observer<List<Task>>() {
+            @Override
+            public void onChanged(List<Task> tasks) {
+                //Update UI
+            }
+        });
+        **/
+
         listTasks = findViewById(R.id.list_tasks);
         lblNoTasks = findViewById(R.id.lbl_no_task);
 

@@ -14,7 +14,7 @@ import java.util.List;
 @Dao
 public interface ProjectDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    long createProject(Project project);
+    void createProject(Project project);
 
     @Query("SELECT * FROM Project WHERE id = :projectId")
     LiveData<Project> getProject(long projectId);
